@@ -22,6 +22,7 @@ def main():
 |   14: Delete Song                  |
 |   15: Delete Album                 |
 |   16: Delete Artist                |
+|   17: Add Songs to playlist        |
 |   0:  exit                         |
 |                                    |
 -------------------------------------
@@ -125,7 +126,7 @@ def main():
         elif res == 17:
             playlist = Playlist.select_playlist()
             if playlist is not None:
-                print("sd")
+                playlist.add_songs()
         elif res == 0:
             break
 

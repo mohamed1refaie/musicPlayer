@@ -55,11 +55,8 @@ class Playlist(Base):
     def select_playlist():
         playlists = Playlist.get_all()
         for i, playlist in enumerate(playlists):
-            songs=str(func.count(playlist.songs))
-            tracknos=""
-            for x in songs:
-                if '0'<=x<='9':
-                    tracknos+=x
+            songs=str(playlist.songs)
+            tracknos=songs.count('-')
             print('%s: %s        Tracks: %s' % (i + 1, playlist.name,tracknos))
 
         playlist_id = int(input('Select Playlist (0 back): '))
@@ -83,6 +80,20 @@ class Playlist(Base):
 
         session.add(playlist)
         session.commit()
+
+    def add_songs(self):
+        songs = Song.get_all()
+        for i, song in enumerate(songs):
+            print('%s: %s' % (i + 1, song))
+        while True:
+            song_id = int(input('Song id (0 to finish): '))
+            if song_id == 0:
+                break
+            self.songs.append(songs[song_id - 1])
+
+        session.merge(self)
+        session.commit()
+
 
     def __repr__(self):
         ret = 'Playlist:\n'
