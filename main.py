@@ -23,6 +23,7 @@ def main():
 |   15: Delete Album                 |
 |   16: Delete Artist                |
 |   17: Add Songs to playlist        |
+|   18: Create New Album             |
 |   0:  exit                         |
 |                                    |
 -------------------------------------
@@ -74,12 +75,13 @@ def main():
             Playlist.create_playlist()
         elif res == 3:
             song=Song.select_song()
-            print("Song: ",song.name)
-            print("Artist: ",song.artist)
-            print("Album: ",song.album.name)
-            print("Release Date: ",song.release_date)
-            print("Duration: ",song.duration)
-            print("Genre: ",song.genre)
+            if song:
+                print("Song: ", song.name)
+                print("Artist: ", song.artist)
+                print("Album: ", song.album.name)
+                print("Release Date: ", song.release_date)
+                print("Duration: ", song.duration)
+                print("Genre: ", song.genre)
         elif res == 4:
             playlist = Playlist.select_playlist()
             if playlist is not None:
@@ -127,6 +129,8 @@ def main():
             playlist = Playlist.select_playlist()
             if playlist is not None:
                 playlist.add_songs()
+        elif res == 18:
+            Album.create_album()
         elif res == 0:
             break
 

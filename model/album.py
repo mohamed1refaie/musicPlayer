@@ -66,8 +66,8 @@ class Album(Base):
 
     @staticmethod
     def create_album():
-        album = Album()
-        album.name = input('Album Name: ')
+        name = input('Album Name: ')
+        album = Album(name)
         album.desc = input('Album Desc: ')
 
         songs = Song.get_all()

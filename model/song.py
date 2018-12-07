@@ -41,6 +41,7 @@ class Song(Base):
     @staticmethod
     def play_genre():
         genres = session.query(Song.genre).distinct().all()
+        print(genres)
         for i, genre in enumerate(genres):
             print('%s: %s' % (i + 1, genre[0]))
         genre_id = int(input('Select Genre(0 back)'))
